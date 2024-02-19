@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://6i8o46avsmp7"]
+
+[ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_7k1mh"]
+[ext_resource type="Texture2D" uid="uid://bbp0ripqowrar" path="res://assets/tilesets/grassSprites.png" id="1_k2ymj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3peng"]
+size = Vector2(75, 25)
+
+[sub_resource type="Animation" id="Animation_euoy6"]
+resource_name = "move"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cljh6"]
+_data = {
+"move": SubResource("Animation_euoy6")
+}
+
+[node name="moving-platform" type="Node2D"]
+script = ExtResource("1_7k1mh")
+
+[node name="platform" type="AnimatableBody2D" parent="."]
+scale = Vector2(0.8, 0.8)
+
+[node name="sprite" type="Sprite2D" parent="platform"]
+texture_filter = 1
+position = Vector2(-7.7486e-07, 9.13938e-07)
+scale = Vector2(0.9375, 0.833333)
+texture = ExtResource("1_k2ymj")
+region_enabled = true
+region_rect = Rect2(48, 32, 64, 24)
+
+[node name="collision" type="CollisionShape2D" parent="platform"]
+position = Vector2(5.36442e-06, 1.99303e-06)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_3peng")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="platform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_cljh6")
+}
