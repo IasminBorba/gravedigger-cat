@@ -20,19 +20,19 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_73mis")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8wvpc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4mo4"]
 atlas = ExtResource("3_0c1vh")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mcyjx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0cjj"]
 atlas = ExtResource("3_0c1vh")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_svkdf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwguc"]
 atlas = ExtResource("3_0c1vh")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w5s5r"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2274i"]
 atlas = ExtResource("3_0c1vh")
 region = Rect2(160, 0, 32, 32)
 
@@ -59,16 +59,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8wvpc")
+"texture": SubResource("AtlasTexture_m4mo4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mcyjx")
+"texture": SubResource("AtlasTexture_d0cjj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_svkdf")
+"texture": SubResource("AtlasTexture_mwguc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w5s5r")
+"texture": SubResource("AtlasTexture_2274i")
 }],
 "loop": true,
 "name": &"run",
@@ -97,8 +97,7 @@ editor_draw_drag_margin = true
 sprite_frames = SubResource("SpriteFrames_kjdqc")
 animation = &"run"
 autoplay = "cat"
-frame = 2
-frame_progress = 0.148801
+frame_progress = 0.440823
 
 [node name="animator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../anim")

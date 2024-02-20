@@ -47,6 +47,5 @@ mouse_default_cursor_shape = 2
 button_mask = 5
 icon = ExtResource("3_2q3lw")
 flat = true
-clip_text = true
 
 [connection signal="pressed" from="ParallaxBackground/ParallaxLayer/start" to="." method="_on_start_pressed"]
