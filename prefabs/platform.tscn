@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccpcd2wfh3e88"]
+
+[ext_resource type="Texture2D" uid="uid://bbp0ripqowrar" path="res://assets/tilesets/grassSprites.png" id="1_5fu3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6022"]
+size = Vector2(64, 16)
+
+[sub_resource type="Animation" id="Animation_ykpiu"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(152, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ooo51"]
+_data = {
+"move": SubResource("Animation_ykpiu")
+}
+
+[node name="moving-platform" type="Node2D"]
+
+[node name="platform" type="AnimatableBody2D" parent="."]
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="sprite-platform" type="Sprite2D" parent="platform"]
+position = Vector2(-1, 0)
+texture = ExtResource("1_5fu3x")
+region_enabled = true
+region_rect = Rect2(48, 32, 64, 16)
+
+[node name="collision" type="CollisionShape2D" parent="platform"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_s6022")
+
+[node name="animation" type="AnimationPlayer" parent="platform"]
+libraries = {
+"": SubResource("AnimationLibrary_ooo51")
+}
+autoplay = "move"
