@@ -231,11 +231,9 @@ offset_bottom = 180.0
 texture = ExtResource("3_hqx5c")
 
 [node name="Mask2" type="CanvasModulate" parent="background"]
-visible = false
 color = Color(0.0400036, 0.0389163, 0.0644753, 1)
 
 [node name="Mask" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.0400036, 0.0389163, 0.0644753, 1)
 
 [node name="level" type="TileMap" parent="."]
