@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -400.0
 
 @onready var wall_detector := $wall_detector as RayCast2D
 @onready var texture := $animated as AnimatedSprite2D
+@onready var anim := $anim as AnimationPlayer
 
 var direction := 1
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -25,3 +26,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED * delta
 	
 	move_and_slide()
+
+
+func _on_animated_animation_finished():
+		queue_free()
