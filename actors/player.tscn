@@ -120,11 +120,12 @@ collision_mask = 2
 script = ExtResource("1_jn8e1")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_gqwuv")
 
 [node name="camera" type="Camera2D" parent="."]
+position = Vector2(0, -48)
+zoom = Vector2(0.8, 0.8)
 limit_left = 0
 limit_smoothed = true
 editor_draw_limits = true
