@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://utdojmut8gph"]
+[gd_scene load_steps=23 format=3 uid="uid://utdojmut8gph"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jn8e1"]
 [ext_resource type="Texture2D" uid="uid://c6r21hsf518ui" path="res://assets/sprites/SPRITEcat.png" id="2_lwu8o"]
@@ -73,9 +73,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kfxwj")
 }],
-"loop": true,
+"loop": false,
 "name": &"attackLight",
-"speed": 1.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -87,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bxt1p")
 }],
-"loop": true,
+"loop": false,
 "name": &"attackShovel",
 "speed": 6.0
 }, {
@@ -139,6 +139,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kd7e4"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grysf"]
 size = Vector2(17.1205, 19.3736)
 
@@ -161,11 +163,14 @@ editor_draw_drag_margin = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kjdqc")
-animation = &"hurt"
+animation = &"attackLight"
 autoplay = "cat"
 
 [node name="animator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../anim")
+libraries = {
+"": SubResource("AnimationLibrary_kd7e4")
+}
 
 [node name="light" type="PointLight2D" parent="."]
 visibility_layer = 3
@@ -198,4 +203,5 @@ position = Vector2(-15, 0)
 target_position = Vector2(-4, 0)
 collision_mask = 4
 
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

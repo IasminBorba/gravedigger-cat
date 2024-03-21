@@ -6,9 +6,13 @@ const JUMP_FORCE = -350.0
 
 
 
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 1100
 var is_jumping := false
+var is_attacking_shovel := false
+var is_attacking_light := false
 var player_life := 5
 var knockback_vector := Vector2.ZERO
 
@@ -39,13 +43,18 @@ func _physics_process(delta):
 		animation.play("jump")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		animation.play("cat")
+		
+		if !is_attacking_light and !is_attacking_shovel:
+			animation.play('cat')
 
 	if Input.is_action_just_pressed("attackq") and is_on_floor():
-		animation.play("attackShovel")
+		animation.play('attackShovel')
+		is_attacking_shovel = true
+
 	if Input.is_action_just_pressed("attacke") and is_on_floor():
-		animation.play("attackLight")
-	
+		animation.play('attackLight')
+		is_attacking_light = true
+
 	if knockback_vector != Vector2.ZERO:
 		velocity = knockback_vector
 
@@ -73,3 +82,12 @@ func _on_hurtbox_body_entered(body):
 		queue_free()
 	else:
 		take_damage(Vector2(200, -200))
+		
+
+
+
+func _on_anim_animation_finished():
+	if animation.animation == 'attackShovel':
+		is_attacking_shovel = false
+	if animation.animation == 'attackLight':
+		is_attacking_light = false
