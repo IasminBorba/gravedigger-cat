@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb0gid2l8mq8q"]
+
+[ext_resource type="Texture2D" uid="uid://x5nxipe5mxd6" path="res://assets/tilesets/background/forestBackground.png" id="1_b4ydj"]
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_kvqbs"]
+[ext_resource type="Texture2D" uid="uid://c7hj7l2856g4l" path="res://assets/sprites/title.png" id="2_3ayan"]
+[ext_resource type="Texture2D" uid="uid://c81atkrdescnk" path="res://assets/sprites/play1.png" id="4_0of2m"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_kvqbs")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(1.25, 1.25)
+transform = Transform2D(1.25, 0, 0, 1.25, 0, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(160, 90)
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-32, -17.6)
+scale = Vector2(0.8, 0.804444)
+texture = ExtResource("1_b4ydj")
+
+[node name="title" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-28.8, -53.2)
+scale = Vector2(1.07833, 1.07833)
+texture = ExtResource("2_3ayan")
+
+[node name="start" type="Button" parent="ParallaxBackground/ParallaxLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.6
+offset_top = -10.0
+offset_right = 16.4
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.663119, 0.643814)
+mouse_default_cursor_shape = 2
+button_mask = 5
+icon = ExtResource("4_0of2m")
+flat = true
+
+[connection signal="pressed" from="ParallaxBackground/ParallaxLayer/start" to="." method="_on_start_pressed"]

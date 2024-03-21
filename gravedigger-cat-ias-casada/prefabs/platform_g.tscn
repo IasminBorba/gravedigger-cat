@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnxs3cilx6gd2"]
+
+[ext_resource type="Script" path="res://scripts/platform.gd" id="1_8y66f"]
+[ext_resource type="Texture2D" uid="uid://bbp0ripqowrar" path="res://assets/tilesets/grassSprites.png" id="2_1ne6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejkg1"]
+size = Vector2(81, 16)
+
+[node name="platform-g" type="Node2D"]
+
+[node name="platform" type="AnimatableBody2D" parent="."]
+collision_layer = 2
+script = ExtResource("1_8y66f")
+
+[node name="sprite-platform" type="Sprite2D" parent="platform"]
+position = Vector2(7.5, 0)
+scale = Vector2(1.26563, 1)
+texture = ExtResource("2_1ne6m")
+region_enabled = true
+region_rect = Rect2(48, 32, 64, 16)
+
+[node name="collision" type="CollisionShape2D" parent="platform"]
+position = Vector2(7.5, 0)
+shape = SubResource("RectangleShape2D_ejkg1")

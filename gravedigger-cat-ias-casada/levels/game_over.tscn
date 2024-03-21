@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg5c3b2eqb3wu"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_p3oc7"]
+[ext_resource type="Texture2D" uid="uid://x5nxipe5mxd6" path="res://assets/tilesets/background/forestBackground.png" id="2_2r6p6"]
+[ext_resource type="FontFile" uid="uid://n44peo7xq3o7" path="res://assets/sprites/Monocraft.ttf" id="3_1e4hi"]
+[ext_resource type="Script" path="res://levels/control.gd" id="4_m1tl2"]
+[ext_resource type="Texture2D" uid="uid://dbjap233va0pr" path="res://assets/sprites/coins/coins0.png" id="5_uqgad"]
+[ext_resource type="Texture2D" uid="uid://f2k5t3m6ag1x" path="res://assets/sprites/SPRITES LANTERN.png" id="6_o2vky"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_p3oc7")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(1.25, 1.25)
+transform = Transform2D(1.25, 0, 0, 1.25, 0, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(160, 90)
+
+[node name="background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(-32, -17.6)
+scale = Vector2(0.8, 0.804444)
+texture = ExtResource("2_2r6p6")
+
+[node name="Label" type="Label" parent="ParallaxBackground/ParallaxLayer/background"]
+offset_left = -76.0
+offset_top = -43.2597
+offset_right = 86.0
+offset_bottom = -16.2597
+theme_override_fonts/font = ExtResource("3_1e4hi")
+theme_override_font_sizes/font_size = 27
+text = "GAME OVER"
+
+[node name="control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 114.0
+offset_top = 73.0
+offset_right = 114.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.86859, 2.86859)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("4_m1tl2")
+
+[node name="coinsIcon" type="TextureRect" parent="control"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 15.0
+scale = Vector2(1.65988, 1.65988)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("5_uqgad")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="coinsCounter" type="Label" parent="control"]
+texture_filter = 1
+layout_direction = 1
+layout_mode = 2
+offset_left = 21.0
+offset_top = 9.0
+offset_right = 27.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("3_1e4hi")
+theme_override_font_sizes/font_size = 9
+text = "2"
+
+[node name="life" type="Sprite2D" parent="control"]
+visible = false
+position = Vector2(-13, -10)
+texture = ExtResource("6_o2vky")
+centered = false
+hframes = 4
+frame = 3
+region_rect = Rect2(10.5892, 8.09809, 65.3193, 52.5741)
