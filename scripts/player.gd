@@ -39,9 +39,14 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		animation.play("cat")
 	if Input.is_action_just_pressed("attackq") and is_on_floor():
-		animation.play("atackpa")
+		animation.play("attackShovel")
 	if Input.is_action_just_pressed("attacke") and is_on_floor():
-		animation.play("atackluz")
+		animation.play("attackLight")
 	
 
 	move_and_slide()
+
+
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("enemies"):
+		body.anim.play("attackShould")
