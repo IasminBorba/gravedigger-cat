@@ -241,7 +241,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"die",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -312,7 +312,7 @@ speed_scale = 0.3
 [node name="animated" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_tos5w")
-animation = &"walk"
+animation = &"die"
 autoplay = "walk"
 
 [node name="wall_detector" type="RayCast2D" parent="."]

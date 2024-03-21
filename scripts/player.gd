@@ -9,6 +9,8 @@ const JUMP_FORCE = -350.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 1100
 var is_jumping := false
+var player_life := 5
+var knockback_vector := Vector2.ZERO
 
 var can_track_input: bool = true
 @onready var animation:= $anim as AnimatedSprite2D
@@ -38,11 +40,14 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		animation.play("cat")
+
 	if Input.is_action_just_pressed("attackq") and is_on_floor():
 		animation.play("attackShovel")
 	if Input.is_action_just_pressed("attacke") and is_on_floor():
 		animation.play("attackLight")
 	
+	if knockback_vector != Vector2.ZERO:
+		velocity = knockback_vector
 
 	move_and_slide()
 
@@ -50,3 +55,21 @@ func _physics_process(delta):
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.anim.play("attackShould")
+
+
+func take_damage(knockback_force := Vector2.ZERO, duration := 0.25):
+	player_life -= 1
+	
+	if knockback_force != Vector2.ZERO:
+		knockback_vector = knockback_force
+		
+		var knockback_tween := get_tree().create_tween()
+		knockback_tween.tween_property(self, "knockback_vector", Vector2.ZERO, duration)
+
+
+func _on_hurtbox_body_entered(body):
+	if player_life < 0:
+		# alterar cena para de game over
+		queue_free()
+	else:
+		take_damage(Vector2(200, -200))

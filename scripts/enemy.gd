@@ -9,23 +9,27 @@ const JUMP_VELOCITY = -400.0
 
 var direction := 1
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+var dead := false
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	
-	if wall_detector.is_colliding():
-		direction *= -1
-		wall_detector.scale.x *= -1
+	if not dead:
+		if not is_on_floor():
+			velocity.y += gravity * delta
 		
-	if direction == 1:
-		texture.flip_h = false
+		if wall_detector.is_colliding():
+			direction *= -1
+			wall_detector.scale.x *= -1
+			
+		if direction == 1:
+			texture.flip_h = false
+		else:
+			texture.flip_h = true
+			
+		velocity.x = direction * SPEED * delta
+		
+		move_and_slide()
 	else:
-		texture.flip_h = true
-		
-	velocity.x = direction * SPEED * delta
-	
-	move_and_slide()
+		texture.play("die")
 
 
 func _on_animated_animation_finished():

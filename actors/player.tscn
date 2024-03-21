@@ -75,7 +75,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attackLight",
-"speed": 3.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -161,9 +161,8 @@ editor_draw_drag_margin = true
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kjdqc")
-animation = &"jump"
+animation = &"hurt"
 autoplay = "cat"
-frame_progress = 0.680736
 
 [node name="animator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../anim")
@@ -188,3 +187,15 @@ position = Vector2(-3.5, 9.53674e-07)
 scale = Vector2(1.2266, 1.5485)
 shape = SubResource("RectangleShape2D_grysf")
 debug_color = Color(0.917647, 0.266667, 0.247059, 0.419608)
+
+[node name="ray_right" type="RayCast2D" parent="."]
+position = Vector2(15, 0)
+target_position = Vector2(4, 0)
+collision_mask = 4
+
+[node name="ray_left" type="RayCast2D" parent="."]
+position = Vector2(-15, 0)
+target_position = Vector2(-4, 0)
+collision_mask = 4
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
